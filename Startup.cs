@@ -36,14 +36,14 @@ namespace UserAPI
             var database = Configuration["Database"] ?? "Usuarios";
             
             //Adiciona ao UserContext a conexão do banco
-            
+            /*
             services.AddDbContext<UserContext>(opt => 
                 opt.UseSqlServer($"Server={server},{port};Initial Catalog={database};User ID ={user};Password={password}"));
             
-            /*
+            */
             services.AddDbContext<UserContext>(opt => 
                 opt.UseSqlServer(Configuration.GetConnectionString("UserConnection")));
-            */  
+              
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

@@ -3,11 +3,12 @@
 version: '3.4'
 services:
   ms-sql-server:
-    image: mcr.microsoft.com/mssql/server:2019-latest
+    image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
     environment: 
       ACCEPT_EULA: "Y"
       SA_PASSWORD: "Roberto@123"
       MSSQL_PID: Express
+      mem_limit: "2gb"
     ports:
       - 1433:1433
   userapi:
