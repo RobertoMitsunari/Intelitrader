@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,13 +29,13 @@ namespace UserAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
+            /*
             var server = Configuration["DBServer"] ?? "ms-sql-server";
             var port = Configuration["DBPort"] ?? "1433";
             var user = Configuration["DBUser"] ?? "sa";
             var password = Configuration["DBPasswrod"] ?? "Roberto@123";
             var database = Configuration["Database"] ?? "Usuarios";
-            
+            */
             //Adiciona ao UserContext a conexão do banco
             /*
             services.AddDbContext<UserContext>(opt => 

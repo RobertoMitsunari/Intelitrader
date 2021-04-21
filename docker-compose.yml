@@ -2,20 +2,19 @@
 
 version: '3.4'
 
-networks: 
-  dockersql-network:
-    driver: bridge
-
 services:
   ms-sql-server:
     image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+    container_name: ms-sql-server
     environment: 
       ACCEPT_EULA: "Y"
       SA_PASSWORD: "Roberto@123"
       MSSQL_PID: Express
       mem_limit: "2gb"
-    networks:
-      - dockersql-network
+    healthcheck:
+        test: ["CMD", "/opt/mssql-tools/bin/sqlcmd", "-Usa", "-PRoberto@123", "-Q", "select 1"]
+        interval: 2s
+        retries: 20
     ports:
       - 1433:1433
 
@@ -24,9 +23,9 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile
-    networks:
-      - dockersql-network
     depends_on:
-      - ms-sql-server
+      ms-sql-server:
+        condition: service_healthy
     ports:
-      - 8080:80
+      - 8080:8080
+
