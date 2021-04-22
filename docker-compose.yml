@@ -4,28 +4,21 @@ version: '2.4'
 
 services:
   ms-sql-server:
-    image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+    image: robertomitsunari/sqlserver:latest
     container_name: ms-sql-server
     environment: 
         ACCEPT_EULA: "Y"
         SA_PASSWORD: "Roberto@123"
         MSSQL_PID: Express
         mem_limit: "2gb"
-    healthcheck:
-        test: ["CMD", "/opt/mssql-tools/bin/sqlcmd", "-Usa", "-PRoberto@123", "-Q", "select 1"]
-        interval: 3s
-        retries: 20
     ports:
       - 1433:1433
 
   userapi:
     image: userapi
     build:
-        context: .
-        dockerfile: ./Dockerfile
-    depends_on:
-        ms-sql-server:
-          condition: "service_healthy"
+      context: .
+      dockerfile: ./Dockerfile
     ports:
       - 8080:8080
 

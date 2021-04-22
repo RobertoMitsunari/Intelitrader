@@ -77,7 +77,6 @@ namespace UserAPI
             {
                 endpoints.MapControllers();
             });
-            PrepDB.PrepPopulation(app);
         }
     }
 }
